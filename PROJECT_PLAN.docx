@@ -1,0 +1,39 @@
+Online Medication & Prescription Tracker
+Problem Statement
+In today’s fast-paced world, managing healthcare efficiently has become a major challenge. Patients often struggle to keep track of doctor consultations, prescriptions, and medication schedules. Visiting clinics frequently for routine consultations, getting prescriptions, and remembering medication timing can be inconvenient and time-consuming.
+Existing digital healthcare platforms, such as Practo, allow users to consult doctors online, book lab tests, and manage appointments. However, these platforms primarily focus on general healthcare services and online consultations, and managing prescriptions and medications remains fragmented. There is a need for a dedicated solution that allows users to store, track, and manage their prescriptions and medications in a systematic way.
+The Online Medication & Prescription Tracker aims to provide a digital solution for prescription management, helping users:
+1.	Store prescriptions digitally – Users can upload prescriptions from any doctor or clinic.
+2.	Track medication schedules – Set reminders for medicine intake to avoid missed doses.
+3.	Monitor medical history – Maintain a history of consultations, tests, and treatments.
+4.	Access healthcare information – Quickly view past prescriptions and notes from doctors.
+This system will improve patient convenience, reduce errors in medication intake, and provide a centralized platform for personal health records. It will benefit users who need regular medical care, those with chronic illnesses, or anyone who wants to maintain organized health records digitally.
+By combining digital prescription tracking, medication reminders, and doctor consultation records, the project aims to make healthcare management easier, safer, and more reliable for users.
+Scope of Requirements
+The scope of the Online Medication & Prescription Tracker defines the core functionalities that the system will support to help users manage their healthcare information efficiently. The application will focus mainly on prescription and medication management rather than full-scale hospital or diagnostic services.
+The scope of the system includes:
+1.	User Management
+o	Users can register and log in securely.
+o	Basic profile details such as name, age, and contact information can be maintained.
+2.	Prescription Management
+o	Users can upload and store digital prescriptions received from any doctor or clinic.
+o	Prescriptions can be viewed anytime for future reference.
+o	Each prescription can be linked with consultation date and doctor details.
+3.	Medication Tracking
+o	Users can add medicines prescribed by doctors.
+o	Medicine details such as dosage, frequency, and duration can be recorded.
+o	The system helps users keep track of ongoing and completed medications.
+4.	Medication Reminders
+o	Users can set reminders for taking medicines on time.
+o	Notifications help reduce missed doses and improve medication adherence.
+5.	Medical History Maintenance
+o	The system maintains a history of past prescriptions and treatments.
+o	Users can review their medical records whenever required.
+6.	Access to Healthcare Information
+o	Users can easily access stored prescriptions and medication details in one place.
+o	The system provides a centralized platform for personal health records.
+Out of Scope:
+•	Direct doctor consultations or video calls.
+•	Online medicine purchasing or payment processing.
+•	Lab test booking or diagnostic services.
+
