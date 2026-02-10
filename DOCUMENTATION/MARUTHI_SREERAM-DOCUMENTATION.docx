@@ -1,274 +1,256 @@
-You are a senior full-stack software architect.
+ONLINE MEDICATION & PRESCRIPTION TRACKER
 
+1. Introduction
 
+Healthcare systems often face challenges in tracking patient medication adherence and managing prescriptions efficiently. Patients may forget to take medicines on time, while doctors lack visibility into whether prescriptions are being followed correctly.
 
-Build a complete END-TO-END full stack project named
+The Online Medication & Prescription Tracker is a role-based web application designed to solve this problem by enabling doctors to prescribe medications digitally, patients to receive reminders and update intake status, and administrators to manage and monitor the system.
 
-"Online Medication & Prescription Tracker"
+2. Objectives of the Project
 
-using industry best practices.
+The primary objectives of this project are:
 
+To digitize prescription management
 
+To help patients follow medication schedules accurately
 
-=====================
+To provide doctors real-time visibility of patient medication adherence
 
-TECH STACK
+To ensure secure role-based access using authentication and authorization
 
-=====================
+To build a scalable and industry-ready full stack application
 
-Frontend:
+3. Scope of the Project
 
-- React (Vite)
+This system supports three types of users:
 
-- React Router
+Doctors
 
-- Axios
+Patients
 
-- Simple clean UI (no heavy styling)
+Administrators
 
+Each user has a dedicated dashboard and features based on their role. The system focuses on structured medical data storage and secure communication between frontend and backend.
 
+4. Technology Stack
+Frontend Technologies
 
-Backend:
+React (Vite)
 
-- Java 17
+React Router
 
-- Spring Boot 3
+Axios
 
-- Spring Security (JWT based authentication)
+HTML, CSS (simple and clean UI)
 
-- REST APIs
+Backend Technologies
 
+Java 17
 
+Spring Boot 3
 
-Database:
+Spring Security
 
-- MySQL (structured relational data only)
+JWT Authentication
 
+RESTful Web Services
 
+Database
 
-=====================
+MySQL (Relational Database)
 
-USER ROLES
+5. System Architecture
 
-=====================
+The application follows a client–server architecture:
 
-1. Doctor
+The frontend handles user interaction and sends requests to backend APIs.
 
-2. Patient
+The backend processes requests, applies business logic, and communicates with the database.
 
-3. Admin (basic)
+Authentication is handled using JWT tokens.
 
+Role-based authorization ensures secure access.
 
+6. User Roles and Functionalities
+6.1 Doctor Module
 
-=====================
+After login, a doctor can:
 
-AUTHENTICATION FLOW
+Complete their professional profile (specialization, hospital, experience)
 
-=====================
+View assigned patients
 
-- Common Register and Login for all users
+Create prescriptions for patients
 
-- User selects role during registration
+Add medicines with dosage, frequency, and duration
 
-- JWT based authentication
+Automatically generate medication schedules
 
-- Role-based dashboard redirection
+Monitor patient medication intake status:
 
+DONE
 
+PENDING
 
-=====================
+MISSED
 
-DOCTOR FLOW
+6.2 Patient Module
 
-=====================
+After login, a patient can:
 
-After login, Doctor should:
+View assigned doctor(s)
 
-1. Complete doctor profile (specialization, hospital, experience)
+View prescriptions
 
-2. View list of assigned patients
+View daily medication reminders
 
-3. Create prescription for a patient
+Mark medicines as DONE after intake
 
-4. Add medicines with:
+Automatically update medication status visible to the doctor
 
-   - Medicine name
+6.3 Admin Module
 
-   - Dosage
+The administrator can:
 
-   - Frequency (Morning / Afternoon / Night)
+Login securely
 
-   - Duration (number of days)
+Verify doctor accounts
 
-5. System should auto-generate medication schedule
+View basic system statistics
 
-6. View patient medication intake status:
+Monitor platform usage
 
-   - DONE
+7. Authentication and Authorization Flow
 
-   - PENDING
+Users register using a common registration form
 
-   - MISSED
+Users select their role during registration
 
+Login generates a JWT token
 
+Token is used for secure API communication
 
-=====================
+Role-based dashboard redirection is applied
 
-PATIENT FLOW
+Unauthorized access is restricted using Spring Security
 
-=====================
+8. Functional Workflow
+Doctor Workflow
 
-After login, Patient should:
+Login to system
 
-1. View assigned doctor(s)
+Complete profile
 
-2. View prescriptions
+Select patient
 
-3. View today's medication reminders
+Create prescription
 
-4. Click DONE after taking medicine
+Add medicines and schedule
 
-5. Intake status should update in doctor dashboard
+Track patient adherence
 
+Patient Workflow
 
+Login to system
 
-=====================
+View prescriptions
 
-ADMIN FLOW
+Receive medication reminders
 
-=====================
+Mark medicines as taken
 
-Admin can:
+Admin Workflow
 
-1. Login
+Login
 
-2. Verify doctor accounts
+Verify doctors
 
-3. View basic system statistics
+View statistics
 
+9. Database Design Overview
 
+The database is designed using relational concepts with structured tables for:
 
-=====================
+Users
 
-BACKEND REQUIREMENTS
+Doctors
 
-=====================
+Patients
 
-- Layered architecture:
+Prescriptions
 
-  controller → service → repository
+Medications
 
-- Entities:
+Medication Schedules
 
-  User
+Foreign key relationships are used to maintain data integrity.
 
-  Doctor
+10. Medication Status Logic
 
-  Patient
+All medicines are initially marked as PENDING
 
-  Prescription
+When patient marks medicine intake, status becomes DONE
 
-  Medication
+If a medicine is not marked within the scheduled day, it is automatically marked as MISSED
 
-  MedicationSchedule
+11. Frontend Features
 
-- REST APIs for all flows
+Responsive role-based dashboards
 
-- MySQL schema with proper relations
+Secure login and registration
 
-- Clean DTO usage
+Medication reminder interface
 
-- Clear API endpoints
+Real-time status updates
 
+Clean and user-friendly UI
 
+12. Backend Features
 
-=====================
+Layered architecture (Controller → Service → Repository)
 
-FRONTEND REQUIREMENTS
+Secure REST APIs
 
-=====================
+JWT-based authentication
 
-Pages:
+Role-based authorization
 
-- Landing page
+Structured database interaction
 
-- Login
+13. Future Enhancements
 
-- Register
+AI-based medication adherence prediction
 
-- Doctor Dashboard
+Smart reminders using patient behavior
 
-- Patient Dashboard
+Health analytics dashboard
 
-- Admin Dashboard
+Integration with wearable devices
 
-- Create Prescription
+Emergency alert system
 
-- Medication Reminder page
+14. Advantages of the System
 
+Reduces medication errors
 
+Improves patient adherence
 
-Frontend should:
+Provides transparency to doctors
 
-- Call backend APIs using Axios
+Enhances healthcare efficiency
 
-- Handle JWT token
+Secure and scalable architecture
 
-- Redirect based on roles
+15. Conclusion
 
+The Online Medication & Prescription Tracker is a real-world healthcare solution that demonstrates the practical implementation of full stack development using modern technologies. The system ensures security, scalability, and usability, making it suitable for real-time healthcare applications.
 
+16. References
 
-=====================
+Spring Boot Documentation
 
-PROJECT STRUCTURE
+React Official Documentation
 
-=====================
+MySQL Documentation
 
-Provide code in this structure:
-
-
-
-/frontend
-
-  └── React application
-
-
-
-/backend
-
-  └── Spring Boot application
-
-
-
-=====================
-
-EXTRA (OPTIONAL)
-
-=====================
-
-- Simple logic to mark medicine as MISSED if not marked DONE
-
-- Mention future ML/AI enhancement (no implementation required)
-
-
-
-=====================
-
-OUTPUT FORMAT
-
-=====================
-
-1. Explain system flow briefly
-
-2. Provide backend code
-
-3. Provide frontend code
-
-4. Provide database schema
-
-5. Provide run instructions
-
-
-
-Focus on clarity, clean code, and beginner-friendly explanations.
-
+REST API Design Guidelines
