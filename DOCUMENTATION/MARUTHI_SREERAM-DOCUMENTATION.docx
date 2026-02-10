@@ -1,0 +1,274 @@
+You are a senior full-stack software architect.
+
+
+
+Build a complete END-TO-END full stack project named
+
+"Online Medication & Prescription Tracker"
+
+using industry best practices.
+
+
+
+=====================
+
+TECH STACK
+
+=====================
+
+Frontend:
+
+- React (Vite)
+
+- React Router
+
+- Axios
+
+- Simple clean UI (no heavy styling)
+
+
+
+Backend:
+
+- Java 17
+
+- Spring Boot 3
+
+- Spring Security (JWT based authentication)
+
+- REST APIs
+
+
+
+Database:
+
+- MySQL (structured relational data only)
+
+
+
+=====================
+
+USER ROLES
+
+=====================
+
+1. Doctor
+
+2. Patient
+
+3. Admin (basic)
+
+
+
+=====================
+
+AUTHENTICATION FLOW
+
+=====================
+
+- Common Register and Login for all users
+
+- User selects role during registration
+
+- JWT based authentication
+
+- Role-based dashboard redirection
+
+
+
+=====================
+
+DOCTOR FLOW
+
+=====================
+
+After login, Doctor should:
+
+1. Complete doctor profile (specialization, hospital, experience)
+
+2. View list of assigned patients
+
+3. Create prescription for a patient
+
+4. Add medicines with:
+
+   - Medicine name
+
+   - Dosage
+
+   - Frequency (Morning / Afternoon / Night)
+
+   - Duration (number of days)
+
+5. System should auto-generate medication schedule
+
+6. View patient medication intake status:
+
+   - DONE
+
+   - PENDING
+
+   - MISSED
+
+
+
+=====================
+
+PATIENT FLOW
+
+=====================
+
+After login, Patient should:
+
+1. View assigned doctor(s)
+
+2. View prescriptions
+
+3. View today's medication reminders
+
+4. Click DONE after taking medicine
+
+5. Intake status should update in doctor dashboard
+
+
+
+=====================
+
+ADMIN FLOW
+
+=====================
+
+Admin can:
+
+1. Login
+
+2. Verify doctor accounts
+
+3. View basic system statistics
+
+
+
+=====================
+
+BACKEND REQUIREMENTS
+
+=====================
+
+- Layered architecture:
+
+  controller → service → repository
+
+- Entities:
+
+  User
+
+  Doctor
+
+  Patient
+
+  Prescription
+
+  Medication
+
+  MedicationSchedule
+
+- REST APIs for all flows
+
+- MySQL schema with proper relations
+
+- Clean DTO usage
+
+- Clear API endpoints
+
+
+
+=====================
+
+FRONTEND REQUIREMENTS
+
+=====================
+
+Pages:
+
+- Landing page
+
+- Login
+
+- Register
+
+- Doctor Dashboard
+
+- Patient Dashboard
+
+- Admin Dashboard
+
+- Create Prescription
+
+- Medication Reminder page
+
+
+
+Frontend should:
+
+- Call backend APIs using Axios
+
+- Handle JWT token
+
+- Redirect based on roles
+
+
+
+=====================
+
+PROJECT STRUCTURE
+
+=====================
+
+Provide code in this structure:
+
+
+
+/frontend
+
+  └── React application
+
+
+
+/backend
+
+  └── Spring Boot application
+
+
+
+=====================
+
+EXTRA (OPTIONAL)
+
+=====================
+
+- Simple logic to mark medicine as MISSED if not marked DONE
+
+- Mention future ML/AI enhancement (no implementation required)
+
+
+
+=====================
+
+OUTPUT FORMAT
+
+=====================
+
+1. Explain system flow briefly
+
+2. Provide backend code
+
+3. Provide frontend code
+
+4. Provide database schema
+
+5. Provide run instructions
+
+
+
+Focus on clarity, clean code, and beginner-friendly explanations.
+
