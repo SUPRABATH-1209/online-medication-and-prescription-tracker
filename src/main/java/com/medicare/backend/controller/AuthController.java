@@ -1,5 +1,6 @@
 package com.medicare.backend.controller;
 
+import com.medicare.backend.dto.LoginRequestDTO;
 import com.medicare.backend.dto.RegistrationRequestDTO;
 import com.medicare.backend.dto.UserResponseDTO;
 import com.medicare.backend.service.UserService;
@@ -21,5 +22,10 @@ public class AuthController {
     public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody RegistrationRequestDTO request) {
         UserResponseDTO response = userService.registerUser(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDTO> login(@RequestBody LoginRequestDTO request) {
+        UserResponseDTO response = userService.loginUser(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
