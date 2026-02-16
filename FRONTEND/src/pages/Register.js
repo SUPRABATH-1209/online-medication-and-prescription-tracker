@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Card, TextField, Button, Typography, ToggleButton,
-  ToggleButtonGroup, Grid, Container, InputAdornment, MenuItem, Alert } from '@mui/material';
+  ToggleButtonGroup, Grid, Container, InputAdornment, MenuItem, Alert} from '@mui/material';
 import {
    Person, ArrowForward, Phone,
   AccountCircle, Verified, MonitorHeart, SupervisedUserCircle,
-  ContactPhone, Business, History
+  Business, History, LocalHospital
 } from '@mui/icons-material';
 import Navbar from '../components/layout/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const Register = () => {
     firstName: '', lastName: '', email: '', password: '', phoneNumber: '',
     specialization: '', licenseNumber: '', experienceYears: '',
     hospitalName: '', hospitalPhone: '', hospitalAddress: '',
-    bloodGroup: '', emergencyContact: ''
+    bloodGroup: '', emergencyContact: '', age: '', gender: '', address: ''
   });
 
   const handleChange = (e) => {
@@ -30,38 +30,52 @@ const Register = () => {
     e.preventDefault();
     setError('');
 
-    // --- CLIENT SIDE VALIDATION (To match your Backend Constraints) ---
+    // --- CLIENT SIDE VALIDATION ---
     if (formData.password.length < 6) {
       setError("Password must be at least 6 characters long.");
       return;
     }
 
+    // FIX: Mapping frontend fields to match your AuthServiceImpl.java logic exactly
     const requestData = {
-      name: `${formData.firstName} ${formData.lastName}`,
+      name: `${formData.firstName} ${formData.lastName}`, // Backend expects "name"
       email: formData.email,
       password: formData.password,
       role: role.toUpperCase(),
-      phone: formData.phoneNumber,
-      // Doctor Entity Fields - Ensure these match your RegistrationRequestDTO field names!
+      phone: formData.phoneNumber, // Backend expects "phone"
+
+      // Doctor Fields
       specialization: formData.specialization,
-      licenseNumber: formData.licenseNumber, // Check if backend DTO uses 'licenseNumber' or 'medicalLicenseNumber'
+      licenseNumber: formData.licenseNumber,
       experienceYears: formData.experienceYears ? parseInt(formData.experienceYears) : 0,
       hospitalName: formData.hospitalName,
       hospitalPhone: formData.hospitalPhone,
       hospitalAddress: formData.hospitalAddress,
-      // Patient Entity Fields
+
+      // Patient/General Fields
       bloodGroup: formData.bloodGroup,
-      emergencyContact: formData.emergencyContact
+      emergencyContact: formData.emergencyContact,
+      age: formData.age ? parseInt(formData.age) : 0,
+      gender: formData.gender || "Not Specified",
+      address: formData.address || formData.hospitalAddress // Use address or hospitalAddress as fallback
     };
 
     try {
+      // Sending request to http://localhost:8321/api/auth/register
       const response = await api.post('/auth/register', requestData);
-      console.log("Success:", response.data);
+
+      // Success! Save token and role if returned, then go to login
+      if(response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('role', response.data.role);
+      }
+
+      console.log("Registration Successful:", response.data);
       navigate('/login');
     } catch (err) {
-      // Better Error Extraction: Shows exactly what the Backend says is wrong
-      const backendError = err.response?.data?.message || err.response?.data?.errors?.[0]?.defaultMessage;
-      setError(backendError || "Registration failed. Please check your inputs.");
+      const backendError = err.response?.data?.message || "Registration failed. Email might already be in use.";
+      setError(backendError);
+      console.error("Registration Error:", err.response?.data);
     }
   };
 
@@ -112,9 +126,6 @@ const Register = () => {
                   <Grid item xs={12} md={8}>
                     <TextField fullWidth label="Hospital Name" name="hospitalName" onChange={handleChange} InputProps={{ startAdornment: <InputAdornment position="start"><Business fontSize="small" /></InputAdornment> }} />
                   </Grid>
-                  <Grid item xs={12} md={6}>
-                    <TextField fullWidth label="Hospital Phone" name="hospitalPhone" onChange={handleChange} InputProps={{ startAdornment: <InputAdornment position="start"><ContactPhone fontSize="small" /></InputAdornment> }} />
-                  </Grid>
                   <Grid item xs={12}>
                     <TextField fullWidth label="Hospital Address" name="hospitalAddress" multiline rows={2} onChange={handleChange} />
                   </Grid>
@@ -124,13 +135,21 @@ const Register = () => {
               <Box>
                 <Typography variant="subtitle2" sx={sectionHeaderStyle}><MonitorHeart /> Health Profile</Typography>
                 <Grid container spacing={2}>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12} md={4}>
+                    <TextField fullWidth label="Age" name="age" type="number" onChange={handleChange} />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField fullWidth select label="Gender" name="gender" value={formData.gender} onChange={handleChange}>
+                      {['Male', 'Female', 'Other'].map(g => <MenuItem key={g} value={g}>{g}</MenuItem>)}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
                     <TextField fullWidth select label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange}>
                       {['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'].map(bg => <MenuItem key={bg} value={bg}>{bg}</MenuItem>)}
                     </TextField>
                   </Grid>
-                  <Grid item xs={12} md={6}>
-                    <TextField fullWidth label="Emergency Contact" name="emergencyContact" onChange={handleChange} InputProps={{ startAdornment: <InputAdornment position="start"><ContactPhone fontSize="small" /></InputAdornment> }} />
+                  <Grid item xs={12}>
+                    <TextField fullWidth label="Address" name="address" onChange={handleChange} multiline rows={2} />
                   </Grid>
                 </Grid>
               </Box>
